@@ -34,7 +34,7 @@ public class MyComplex {
         this.image = image;
     }
     public boolean IsImage(){
-        return image != 0.0;
+        return !isEqual(image,0.0);
     }
     public boolean IsReal(){
         return !(this.IsImage());
@@ -81,13 +81,17 @@ public class MyComplex {
         this.image=0-this.image;
         return this;
     }
+    private boolean isEqual(double x,double y){
+        double eps=0.0000001;
+        return Math.abs(x-y) < eps;
+    }
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj== null) return false;
         if ( getClass() != obj.getClass()) return false;
         MyComplex complex= (MyComplex) obj;
-        return image==complex.image && real==complex.real;
+        return isEqual(image,complex.image)&& isEqual(real,complex.real);
     }
 
     @Override
