@@ -1,5 +1,7 @@
 package netshool;
 
+import java.util.Objects;
+
 public class MyBall {
     private float x;
     private float y;
@@ -64,6 +66,19 @@ public class MyBall {
     }
     public void reflectVertical(){
         this.ydelt=-this.ydelt;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MyBall ball = (MyBall) o;
+        return Float.compare(ball.x, x) == 0 && Float.compare(ball.y, y) == 0 && radius == ball.radius && Float.compare(ball.xdelt, xdelt) == 0 && Float.compare(ball.ydelt, ydelt) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y, radius, xdelt, ydelt);
     }
 
     @Override

@@ -1,6 +1,8 @@
 package netshool;
 
 
+import java.util.Arrays;
+
 public class MyPolinomial {
     private double[] coeffs=new double[100];
     private int[] grad=new int[100];
@@ -80,6 +82,20 @@ public class MyPolinomial {
         return Math.abs(x-y) < eps;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MyPolinomial that = (MyPolinomial) o;
+        return Arrays.equals(this.coeffs, that.coeffs) && Arrays.equals(this.grad, that.grad);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Arrays.hashCode(coeffs);
+        result = 31 * result + Arrays.hashCode(grad);
+        return result;
+    }
 
     @Override
     public String toString() {
